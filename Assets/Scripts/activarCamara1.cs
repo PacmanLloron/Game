@@ -34,6 +34,5 @@ public class activarCamara1 : MonoBehaviour
             Cam2.SetActive(false);
             Cam3.SetActive(true);
         }
-
     }
 }
