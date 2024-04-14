@@ -1,0 +1,4 @@
+repository "Game-@unity_AF8B684DD74B589696D7@cloud"
+  path "/"
+    br "/main"
+    co "/main"
