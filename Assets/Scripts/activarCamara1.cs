@@ -22,6 +22,8 @@ public class activarCamara1 : MonoBehaviour
             Cam2.SetActive(false);
             Cam3.SetActive(false);
         }
+
+
         if(Input.GetKey(KeyCode.F2))
         {
             Cam1.SetActive(false);
@@ -34,5 +36,7 @@ public class activarCamara1 : MonoBehaviour
             Cam2.SetActive(false);
             Cam3.SetActive(true);
         }
+
+        
     }
 }
