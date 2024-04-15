@@ -6426,6 +6426,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  BotonPlay: {fileID: 636022290}
+  isplay: 0
 --- !u!54 &2104905908
 Rigidbody:
   m_ObjectHideFlags: 0
