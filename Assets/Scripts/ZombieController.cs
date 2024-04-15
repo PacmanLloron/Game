@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ZombieController : MonoBehaviour
 {
@@ -12,17 +13,33 @@ public class ZombieController : MonoBehaviour
     public GameObject target;
 
     public bool atacando;
+    public Button BotonPlay;
+    public Vector3 posicionInicial;
+    public bool isplay;
 
     // Start is called before the first frame update
     void Start()
     {
         ani = GetComponent<Animator>();
         target = GameObject.Find("DogPlayer");
+        isplay = false;
+        posicionInicial = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (isplay)
+        {
+            Comportamiento_Enemigo();   
+        }else{
+            BotonPlay.onClick.AddListener(Comportamiento_Enemigo_inicio);
+        }
+    }
+
+    public void Comportamiento_Enemigo_inicio(){
+        transform.position = posicionInicial;
+        isplay = true;
         Comportamiento_Enemigo();
     }
 

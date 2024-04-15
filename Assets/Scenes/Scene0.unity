@@ -2299,6 +2299,9 @@ MonoBehaviour:
   grado: 0
   target: {fileID: 2104905901}
   atacando: 0
+  BotonPlay: {fileID: 636022290}
+  posicionInicial: {x: 0, y: 0, z: 0}
+  isplay: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -2750,6 +2753,9 @@ MonoBehaviour:
   grado: 0
   target: {fileID: 2104905901}
   atacando: 0
+  BotonPlay: {fileID: 636022290}
+  posicionInicial: {x: 0, y: 0, z: 0}
+  isplay: 0
 --- !u!4 &859522905 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4257605397364450, guid: a8145fd98e506094980d05080bde9072, type: 3}
@@ -4849,6 +4855,9 @@ MonoBehaviour:
   grado: 0
   target: {fileID: 2104905901}
   atacando: 0
+  BotonPlay: {fileID: 636022290}
+  posicionInicial: {x: 0, y: 0, z: 0}
+  isplay: 0
 --- !u!4 &1634442147 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6360420542703049432, guid: 8fcb9d2d43929c04f8c70c38581418d4, type: 3}
@@ -5394,6 +5403,9 @@ MonoBehaviour:
   grado: 0
   target: {fileID: 2104905901}
   atacando: 0
+  BotonPlay: {fileID: 636022290}
+  posicionInicial: {x: 0, y: 0, z: 0}
+  isplay: 0
 --- !u!4 &1832147968 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4257605397364450, guid: a8145fd98e506094980d05080bde9072, type: 3}
@@ -5593,6 +5605,9 @@ MonoBehaviour:
   grado: 0
   target: {fileID: 2104905901}
   atacando: 0
+  BotonPlay: {fileID: 636022290}
+  posicionInicial: {x: 0, y: 0, z: 0}
+  isplay: 0
 --- !u!4 &1886823278 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4257605397364450, guid: a8145fd98e506094980d05080bde9072, type: 3}
