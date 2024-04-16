@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
 
     private void isNameDog(string textNameDog)
     {
+        Debug.Log("isNameDog: " + textNameDog);
         NameDog.text = textNameDog;
     }
     private void isLogoDog(int indexLogoDog)
