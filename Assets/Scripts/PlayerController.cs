@@ -2,22 +2,55 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
     public float speed = 3f; // Velocidad de movimiento del personaje
     public float jumpForce = 5f; // Fuerza de salto del personaje
-    private Rigidbody rb; // Referencia al Rigidbody del personaje
+     private Rigidbody rb; // Referencia al Rigidbody del personaje
     private Animator animator; // Referencia al componente Animator
     public Button BotonPlay;
     public bool isplay;
+    public TMP_InputField nameProfile;
+    public TMP_Dropdown team;
+    public TMP_Text NameDog;
+    public TMP_Text NameTeamDog;
+
 
 
     void Start ()
     {
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>(); // Obtener la referencia al Rigidbody del personaje
-        animator = GetComponent<Animator>();// Obtener la referencia al componente Animator
+ 
         isplay = false;
+        nameProfile.onValueChanged.AddListener(isNameDog);
+        team.onValueChanged.AddListener(isTeamDog);
+    }
+
+    private void isNameDog(string textNameDog)
+    {
+        NameDog.text = textNameDog;
+    }
+    private void isTeamDog(int indexTeamDog)
+    {
+
+        string typeTeam = "";
+        
+         switch (indexTeamDog)
+        {
+            case 0:
+                typeTeam = "Red";
+                break;
+            case 1:
+                typeTeam = "Blue";
+                break;
+            case 2:
+                typeTeam = "Yellow";
+                break;
+        }
+        NameTeamDog.text = "Team "+typeTeam;
     }
 
     void Update ()
@@ -78,7 +111,7 @@ public class PlayerController : MonoBehaviour
                 animator.SetTrigger("Defend01"); // Activa la animación de ataque
             }
 
-            // Verificar si se presiona la tecla de espacio para saltar
+             // Verificar si se presiona la tecla de espacio para saltar
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 // Verificar si el personaje está en el suelo (puedes ajustar esto según tus necesidades)
