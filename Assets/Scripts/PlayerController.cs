@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,13 +10,27 @@ public class PlayerController : MonoBehaviour
     private Animator animator; // Referencia al componente Animator
     public Button BotonPlay;
     public bool isplay;
+    public TMP_InputField nameProfile;
+    public TMP_Dropdown logo;
+    public TMP_Text NameDog;
+
 
 
     void Start ()
     {
-        // Obtener la referencia al componente Animator
         animator = GetComponent<Animator>();
         isplay = false;
+        nameProfile.onValueChanged.AddListener(isNameDog);
+        logo.onValueChanged.AddListener(isLogoDog);
+    }
+
+    private void isNameDog(string textNameDog)
+    {
+        NameDog.text = textNameDog;
+    }
+    private void isLogoDog(int indexLogoDog)
+    {
+        Debug.Log("indexLogoDog: " + indexLogoDog);
     }
 
     void Update ()
