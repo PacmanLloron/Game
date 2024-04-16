@@ -84,10 +84,8 @@ public class ZombieController : MonoBehaviour
                 transform.Translate(Vector3.forward * 2 * Time.deltaTime);
 
                 ani.SetBool("attack", false);
-                Debug.Log("Persiguiendo");
             }
             else{
-                Debug.Log(atacando);
                 ani.SetBool("walk", false);
                 ani.SetBool("run", false);
 
@@ -102,6 +100,5 @@ public class ZombieController : MonoBehaviour
     {
         ani.SetBool("attack", false);
         atacando = false;
-        Debug.Log("Finalizo la animacion de ataque");
     }
 }

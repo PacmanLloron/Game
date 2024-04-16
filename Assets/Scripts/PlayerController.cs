@@ -7,6 +7,8 @@ using TMPro;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 3f; // Velocidad de movimiento del personaje
+    public float jumpForce = 5f; // Fuerza de salto del personaje
+     private Rigidbody rb; // Referencia al Rigidbody del personaje
     private Animator animator; // Referencia al componente Animator
     public Button BotonPlay;
     public bool isplay;
@@ -20,6 +22,8 @@ public class PlayerController : MonoBehaviour
     void Start ()
     {
         animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>(); // Obtener la referencia al Rigidbody del personaje
+ 
         isplay = false;
         nameProfile.onValueChanged.AddListener(isNameDog);
         team.onValueChanged.AddListener(isTeamDog);
@@ -105,6 +109,19 @@ public class PlayerController : MonoBehaviour
             if (Input.GetMouseButtonDown(1)) // 0 corresponde al clic derecho del mouse
             {
                 animator.SetTrigger("Defend01"); // Activa la animación de ataque
+            }
+
+             // Verificar si se presiona la tecla de espacio para saltar
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                // Verificar si el personaje está en el suelo (puedes ajustar esto según tus necesidades)
+                if (Mathf.Abs(rb.velocity.y) < 0.01f)
+                {
+                    // Aplicar fuerza de salto al Rigidbody
+                    rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                    // Establecer la animación de salto
+                    // animator.SetTrigger("Jump");
+                }
             }
             
                
