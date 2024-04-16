@@ -11,8 +11,9 @@ public class PlayerController : MonoBehaviour
     public Button BotonPlay;
     public bool isplay;
     public TMP_InputField nameProfile;
-    public TMP_Dropdown logo;
+    public TMP_Dropdown team;
     public TMP_Text NameDog;
+    public TMP_Text NameTeamDog;
 
 
 
@@ -21,16 +22,31 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         isplay = false;
         nameProfile.onValueChanged.AddListener(isNameDog);
-        logo.onValueChanged.AddListener(isLogoDog);
+        team.onValueChanged.AddListener(isTeamDog);
     }
 
     private void isNameDog(string textNameDog)
     {
         NameDog.text = textNameDog;
     }
-    private void isLogoDog(int indexLogoDog)
+    private void isTeamDog(int indexTeamDog)
     {
-        Debug.Log("indexLogoDog: " + indexLogoDog);
+
+        string typeTeam = "";
+        
+         switch (indexTeamDog)
+        {
+            case 0:
+                typeTeam = "Red";
+                break;
+            case 1:
+                typeTeam = "Blue";
+                break;
+            case 2:
+                typeTeam = "Yellow";
+                break;
+        }
+        NameTeamDog.text = "Team "+typeTeam;
     }
 
     void Update ()
