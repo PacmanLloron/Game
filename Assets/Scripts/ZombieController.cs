@@ -18,6 +18,17 @@ public class ZombieController : MonoBehaviour
     public bool isplay;
     private bool isStopped = false;
 
+    [Header("Arma")]
+    // public int hp = 50;
+    public int dañoArma = 10;
+    public Animator anim;
+
+    [Header("Barra Salud")]
+    public float Salud = 50;
+    public float SaludMaxima = 50;
+
+    public Image BarraSalud;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +36,7 @@ public class ZombieController : MonoBehaviour
         target = GameObject.Find("DogPlayer");
         isplay = false;
         posicionInicial = transform.position;
+        
     }
 
     // Update is called once per frame
@@ -32,6 +44,7 @@ public class ZombieController : MonoBehaviour
     {
         if (isplay)
         {
+            ActualizarSaludEnemigo();
             Comportamiento_Enemigo();   
         }else{
             BotonPlay.onClick.AddListener(Comportamiento_Enemigo_inicio);
@@ -127,5 +140,28 @@ public class ZombieController : MonoBehaviour
         ani.SetBool("attack", false);
         atacando = false;
         Debug.Log("Finalizo la animacion de ataque");
+    }
+
+    void ActualizarSaludEnemigo()
+    {
+        BarraSalud.fillAmount = Salud / SaludMaxima;
+    }
+
+     public void OnTriggerEnter(Collider other)
+    {
+
+        if(other.gameObject.tag == "Arma")
+        {
+            if(anim != null)
+            {
+                anim.Play("RecibirDaño0");
+            }
+            Salud -= dañoArma;
+        }
+
+        if(Salud <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

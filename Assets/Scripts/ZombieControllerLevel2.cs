@@ -18,6 +18,17 @@ public class ZombieControllerLevel2 : MonoBehaviour
     public bool isplay;
     private bool isStopped = false;
 
+    [Header("Arma")]
+    // public int hp = 50;
+    public int dañoArma = 10;
+    public Animator anim;
+
+    [Header("Barra Salud")]
+    public float Salud = 50;
+    public float SaludMaxima = 50;
+
+    public Image BarraSalud;
+
     void Start()
     {
         ani = GetComponent<Animator>();
@@ -30,6 +41,7 @@ public class ZombieControllerLevel2 : MonoBehaviour
     {
         if (isplay)
         {
+            ActualizarSaludEnemigo();
             Comportamiento_Enemigo();
         }
         else
@@ -129,5 +141,28 @@ public class ZombieControllerLevel2 : MonoBehaviour
     {
         ani.SetBool("attack", false);
         atacando = false;
+    }
+
+     void ActualizarSaludEnemigo()
+    {
+        BarraSalud.fillAmount = Salud / SaludMaxima;
+    }
+
+     public void OnTriggerEnter(Collider other)
+    {
+
+        if(other.gameObject.tag == "Arma")
+        {
+            if(anim != null)
+            {
+                anim.Play("RecibirDaño0");
+            }
+            Salud -= dañoArma;
+        }
+
+        if(Salud <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
