@@ -15,7 +15,29 @@ public class PlayerController : MonoBehaviour
     public TMP_Text NameDog;
     public TMP_Text NameTeamDog;
 
+    // Variables Barra Salud ---------------------
+    [Header("Barra Salud")]
+    public float Salud = 100;
+    public float SaludMaxima = 100;
 
+    public Image BarraSalud;
+    public Text TextoSalud;
+
+    [Header("Canvas Muerto")]
+    public GameObject Muerto;
+    public GameObject Victoria;
+
+    [Header("Arma")]
+    public BoxCollider armaBoxCol;
+    // public int hp = 50;
+    public int dañoArma = 5;
+    public Animator anim;
+
+    [Header("Puntos")]
+    public GameObject point1;
+    public GameObject point2;
+    public Animator openDoor1;
+    public Animator openDoor2;
 
     void Start ()
     {
@@ -23,6 +45,8 @@ public class PlayerController : MonoBehaviour
         isplay = false;
         nameProfile.onValueChanged.AddListener(isNameDog);
         team.onValueChanged.AddListener(isTeamDog);
+
+        DesactivarCollidersArmas();
     }
 
     private void isNameDog(string textNameDog)
@@ -53,7 +77,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isplay)
         {
-        
+            ActualizarSalud();
             // Obtener la entrada del teclado para las teclas de flecha
             float horizontalInput = Input.GetAxis("Horizontal");
             float verticalInput = Input.GetAxis("Vertical");
@@ -117,5 +141,57 @@ public class PlayerController : MonoBehaviour
 
     public void botonPlayOnClick(){
         isplay = true;
+    }
+
+    void ActualizarSalud()
+    {
+        BarraSalud.fillAmount = Salud / SaludMaxima;
+        TextoSalud.text = "+ " + Salud.ToString("f0");
+    }
+
+     public void ActivarCollidersArmas()
+    {
+        armaBoxCol.enabled = true;
+    }
+
+    public void DesactivarCollidersArmas()
+    {
+        armaBoxCol.enabled = false;
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+
+        if(other.gameObject.tag == "ManoEnemiga")
+        {
+            if(anim != null)
+            {
+                anim.Play("GetHit");
+            }
+            Salud -= dañoArma;
+        }
+
+        if(Salud <= 0)
+        {
+            if(gameObject != null) {
+                Destroy(gameObject);
+            }
+            Instantiate(Muerto);
+            Salud = 0;
+        }
+
+        if(other.gameObject.tag == "point1") {
+            Destroy(point1);
+            openDoor1.SetTrigger("DoorATrigger");
+        }
+
+        if(other.gameObject.tag == "point2") {
+            Destroy(point2);
+            openDoor2.SetTrigger("DoorATrigger");
+        }
+
+        if(other.gameObject.tag == "point3") {
+            Instantiate(Victoria);
+        }
     }
 }
